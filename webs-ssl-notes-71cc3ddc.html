@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>leyu · 简明使用指南</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: linear-gradient(145deg, #fbe9d2 0%, #f3d5b5 45%, #eccbad 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem 1.5rem;
+      line-height: 1.6;
+      color: #2d2a24;
+    }
+
+    .card {
+      max-width: 820px;
+      width: 100%;
+      background: #fffcf9;
+      border-radius: 44px;
+      padding: 2.8rem 2.4rem;
+      box-shadow: 0 16px 40px -12px rgba(100, 60, 30, 0.28), 0 2px 6px rgba(0,0,0,0.03);
+      transition: box-shadow 0.2s;
+    }
+
+    @media (max-width: 540px) {
+      body { padding: 1.2rem 0.8rem; }
+      .card { padding: 2rem 1.2rem; border-radius: 32px; }
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: #4f3b28;
+      margin: 0 0 0.2rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    h1 small {
+      font-size: 1rem;
+      font-weight: 380;
+      color: #7f6b57;
+      background: #efe3d7;
+      padding: 0.1rem 0.7rem;
+      border-radius: 40px;
+      letter-spacing: 0;
+    }
+
+    .subhead {
+      font-size: 1.1rem;
+      color: #6b5842;
+      margin-bottom: 2rem;
+      border-left: 5px solid #dbad7a;
+      padding-left: 1rem;
+      background: rgba(235, 210, 185, 0.2);
+      border-radius: 0 16px 16px 0;
+    }
+
+    .summary {
+      font-size: 1.05rem;
+      background: #f7efe8;
+      padding: 1.4rem 1.8rem;
+      border-radius: 32px;
+      margin-bottom: 2.2rem;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
+    }
+
+    .highlight-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.1rem;
+      margin: 1.8rem 0 2rem;
+    }
+
+    @media (max-width: 440px) {
+      .highlight-grid { grid-template-columns: 1fr; }
+    }
+
+    .hl-item {
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 1rem 1.4rem;
+      box-shadow: 0 4px 8px rgba(140, 100, 60, 0.06);
+      border: 1px solid #eee3d8;
+    }
+
+    .hl-item strong {
+      display: block;
+      font-weight: 540;
+      color: #4f3927;
+      margin-bottom: 0.2rem;
+      font-size: 1.05rem;
+    }
+
+    .hl-item span {
+      font-size: 0.95rem;
+      color: #5d4a37;
+    }
+
+    .section-title {
+      font-weight: 480;
+      font-size: 1.3rem;
+      margin: 2.2rem 0 1rem 0;
+      color: #4f3927;
+      letter-spacing: -0.01em;
+      border-bottom: 2px solid #ebd7c5;
+      padding-bottom: 0.3rem;
+    }
+
+    .use-steps {
+      list-style: none;
+      padding: 0;
+    }
+
+    .use-steps li {
+      background: #fcf6f0;
+      margin-bottom: 0.75rem;
+      padding: 0.8rem 1.4rem;
+      border-radius: 40px;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.7rem;
+      border-left: 4px solid #dbb58b;
+    }
+
+    .use-steps li::before {
+      content: "→";
+      color: #b3885e;
+      font-weight: 500;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .tips-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem 1.2rem;
+      margin: 1rem 0 1.8rem;
+    }
+
+    .tips-list .tip {
+      background: #f3e7dd;
+      padding: 0.3rem 1rem;
+      border-radius: 60px;
+      font-size: 0.9rem;
+      color: #4b3b2c;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 480px) {
+      .tips-list .tip { white-space: normal; }
+    }
+
+    .faq-mini {
+      background: #f3ebe3;
+      border-radius: 28px;
+      padding: 1.4rem 1.8rem;
+      margin: 1.8rem 0 1.2rem;
+    }
+
+    .faq-mini p {
+      margin: 0.5rem 0;
+    }
+
+    .faq-mini strong {
+      color: #4f3927;
+      font-weight: 500;
+    }
+
+    .access-note {
+      background: #e7d8cb;
+      border-radius: 60px;
+      padding: 0.6rem 1.5rem;
+      display: inline-block;
+      font-size: 0.9rem;
+      color: #3d3024;
+      margin: 0.8rem 0 0.2rem;
+    }
+
+    .link-wrapper {
+      margin: 2rem 0 0.2rem;
+      text-align: right;
+    }
+
+    .link-wrapper a {
+      display: inline-block;
+      background: #4f3927;
+      color: #fcf3ea;
+      text-decoration: none;
+      padding: 0.6rem 2.2rem;
+      border-radius: 60px;
+      font-weight: 450;
+      font-size: 1rem;
+      letter-spacing: 0.3px;
+      transition: background 0.2s, transform 0.1s;
+      box-shadow: 0 4px 6px rgba(70, 40, 20, 0.1);
+    }
+
+    .link-wrapper a:hover {
+      background: #3a2a1d;
+      transform: scale(1.01);
+    }
+
+    .footnote {
+      margin-top: 2rem;
+      font-size: 0.85rem;
+      color: #6d5d4b;
+      border-top: 1px solid #e7d9cd;
+      padding-top: 1.2rem;
+      text-align: center;
+    }
+
+    .soft-link {
+      color: #5d3f28;
+      font-weight: 480;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: #cfb69f;
+      transition: text-decoration-color 0.2s;
+    }
+
+    .soft-link:hover {
+      text-decoration-color: #a68465;
+    }
+  </style>
+</head>
+<body>
+<div class="card">
+  <h1>
+    leyu
+    <small>指南</small>
+  </h1>
+  <div class="subhead">产品说明 · 简明访问提醒</div>
+
+  <div class="summary">
+    这是一份关于 <a href="https://webs-ssl-leyu.com" class="soft-link">leyu</a> 的温和介绍与使用思路汇总。我们围绕实际体验、功能场景与注意事项展开，帮助你在接触之前有一个清晰、不过热的预期。
+  </div>
+
+  <!-- 亮点网格 -->
+  <div class="highlight-grid">
+    <div class="hl-item">
+      <strong>轻量化结构</strong>
+      <span>入口直观，减少多余跳转，核心路径清晰。</span>
+    </div>
+    <div class="hl-item">
+      <strong>基础体验稳定</strong>
+      <span>页面加载与浏览响应在常规网络下表现平顺。</span>
+    </div>
+    <div class="hl-item">
+      <strong>场景适配</strong>
+      <span>无论是快速浏览还是短时查阅，都能找到合适节奏。</span>
+    </div>
+    <div class="hl-item">
+      <strong>持续维护</strong>
+      <span>界面与内容保持阶段性调整，减少陈旧信息。</span>
+    </div>
+  </div>
+
+  <!-- 使用建议 -->
+  <div class="section-title">使用建议</div>
+  <ul class="use-steps">
+    <li>首次通过 <a href="https://webs-ssl-leyu.com" class="soft-link">leyu</a> 浏览时，建议先熟悉主功能区分布，不需急于操作。</li>
+    <li>根据自身网络环境选择合适时段访问，避免高峰期可能的排队影响。</li>
+    <li>涉及偏好设置或个人信息部分，可在空闲时逐一了解，按需调整。</li>
+    <li>如遇到临时不可用或加载异常，稍后重试即可，不必反复刷新。</li>
+  </ul>
+
+  <!-- 场景提示 -->
+  <div class="section-title">常见场景与提醒</div>
+  <div class="tips-list">
+    <span class="tip">📱 移动端适配良好</span>
+    <span class="tip">🌐 建议使用主流浏览器</span>
+    <span class="tip">🔒 注意网络环境安全</span>
+    <span class="tip">🧾 功能更新留意页面公告</span>
+  </div>
+
+  <!-- FAQ 摘要 -->
+  <div class="faq-mini">
+    <p><strong>Q：leyu 适合哪些人？</strong> 对日常基础浏览有需求、偏好简洁入口的用户均可尝试，无明显门槛。</p>
+    <p><strong>Q：是否需要注册？</strong> 是否注册取决于具体功能方向，部分内容无需注册即可浏览。</p>
+    <p><strong>Q：有什么需要留意的？</strong> 和任何线上服务一样，留意个人设备与账户安全，不通过非官方渠道访问。</p>
+  </div>
+
+  <!-- 可信但克制的访问说明 -->
+  <div class="access-note">
+    ⚡ 访问说明：本页面为产品介绍用途，所有链接均指向 https://webs-ssl-leyu.com 对应服务。请通过正规渠道使用，平台不对第三方传播内容负责。
+  </div>
+
+  <!-- 唯一链接（自然嵌入句子） -->
+  <div class="link-wrapper">
+    若希望进一步了解，可前往 <a href="https://webs-ssl-leyu.com">leyu</a> 浏览完整内容。
+  </div>
+
+  <div class="footnote">
+    温和浏览 · 合理预期 · 信息仅供参考
+  </div>
+</div>
+</body>
+</html>
